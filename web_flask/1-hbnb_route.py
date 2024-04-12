@@ -1,31 +1,27 @@
-<<<<<<< HEAD
-=======
 #!/usr/bin/python3
-"""Module of a python script"""
+"""
+hbnb route
+"""
 
->>>>>>> f8fc929b8545ce466a6173b756146a580a15b191
 from flask import Flask
-
 app = Flask(__name__)
 
-<<<<<<< HEAD
-@app.route('/hbnb', strict_slashes=False)
+
+@app.route('/', strict_slashes=False)
 def index():
-    return "HBNB"
+    """
+    return HBNB!
+    """
+    return 'Hello HBNB!'
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5000")
-=======
-@app.route('/',strict_slashes=False)
-def home():
-    """func to be executed"""
-    return "Hello HBNB!"
 
-@app.route('/hbnb',strict_slashes=False)
+@app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """func to be executed"""
-    return "HBNB"
+    """
+    return only HBNB
+    """
+    return 'HBNB'
 
-if __name__ =='__main__':
-    app.run(host="0.0.0.0", port=5000)
->>>>>>> f8fc929b8545ce466a6173b756146a580a15b191
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)

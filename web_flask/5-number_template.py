@@ -1,39 +1,65 @@
-from flask import Flask, render_template
+#!/usr/bin/python3
+"""
+Module to initiate a flask app
+"""
+
+
+from flask import Flask
+from flask import render_template
+
 
 app = Flask(__name__)
 
-@app.route('/')
-def hello():
+
+@app.route('/', strict_slashes=False)
+def hello_hbnb():
+    """
+    Index route
+    """
     return 'Hello HBNB!'
 
-@app.route('/hbnb')
+
+@app.route('/hbnb', strict_slashes=False)
 def hbnb():
+    """
+    HBNB route
+    """
     return 'HBNB'
 
+
 @app.route('/c/<text>', strict_slashes=False)
-def c_text(text):
-    text = text.replace('_', ' ')
-    return 'C {}'.format(text)
+def c_is_fun(text):
+    """
+    Dynamic routing
+    """
+    return 'C ' + text.replace('_', ' ')
 
-@app.route('/python/', defaults={'text': 'is cool'})
+
+@app.route('/python/')
 @app.route('/python/<text>', strict_slashes=False)
-def python_text(text):
-    text = text.replace('_', ' ')
-    return 'Python {}'.format(text)
+def python_is_cool(text='is cool'):
+    """
+    Dynamic routing
+    """
+    return 'Python ' + text.replace('_', ' ')
 
-@app.route('/number/<int:n>')
-def number(n):
-    if isinstance(n, int):
-        return '{} is a number'.format(n)
-    else:
-        return 'Invalid input'
 
-@app.route('/number_template/<int:n>')
+@app.route('/number/<int:n>', strict_slashes=False)
+def is_number(n):
+    """
+    Dynamic routing
+    """
+    return str(n) + ' is a number'
+
+
+@app.route('/number_template/<int:n>', strict_slashes=False)
+@app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
-    if isinstance(n, int):
-        return render_template('5-number.html', number=n)
-    else:
-        return 'Invalid input'
+    """
+    Dynamic routing and template rendering
+    """
+    return render_template('5-number.html', n=n)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
